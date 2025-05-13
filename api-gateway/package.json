@@ -1,0 +1,19 @@
+{
+	"name": "api-gateway",
+	"version": "0.0.0",
+	"description": "Api Gateway Service",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js",
+		"dev": "nodemon server.js"
+	},
+	"keywords": [
+		"api-gateway"
+	],
+	"author": "aleksandar.lazic.p@gmail.com",
+	"license": "ISC",
+	"packageManager": "pnpm@10.8.0",
+	"devDependencies": {
+		"nodemon": "^3.1.10"
+	}
+}
