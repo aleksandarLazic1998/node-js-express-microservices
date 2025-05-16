@@ -1,18 +1,43 @@
-import express from "express";
-
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const Redis = require("ioredis");
+const { RateLimiterRedis } = require("rate-limiter-flexible");
 
-import ENV_VARIABLES from "./config/env.config.js";
-import errorHandler from "./middlewares/error-handler.middlewares.js";
-import logger from "./utils/logger.utils.js";
+const ENV_VARIABLES = require("./config/env.config");
+const errorHandler = require("./middlewares/error-handler.middlewares");
+const logger = require("./utils/logger.utils");
+const {
+	rateLimiterRedis,
+} = require("./middlewares/rate-limiter-redis.middleware");
 
 const app = express();
 
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+
+const redisClient = new Redis({
+	port: ENV_VARIABLES.REDIS_PORT,
+	host: ENV_VARIABLES.REDIS_HOST,
+});
+
+redisClient.on("error", (error) => {
+	logger.error("Redis connection error", error);
+});
+redisClient.on("connect", () => {
+	logger.info("Redis client connected in identity Service");
+});
+
+// DDos protection and rate limiting
+const rateLimiter = new RateLimiterRedis({
+	storeClient: redisClient,
+	keyPrefix: "middleware",
+	points: 10,
+	duration: 1,
+});
+
+app.use(rateLimiterRedis(rateLimiter));
 
 app.use((req, res, next) => {
 	logger.info(`Received ${req.method} request to ${req.url}`);
