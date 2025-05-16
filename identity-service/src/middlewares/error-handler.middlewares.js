@@ -1,4 +1,4 @@
-import logger from "../utils/logger.utils";
+const logger = require("../utils/logger.utils");
 
 class APIError extends Error {
 	constructor(message, statusCode) {

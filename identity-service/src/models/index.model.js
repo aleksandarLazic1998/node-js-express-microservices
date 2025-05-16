@@ -1,7 +1,9 @@
-import UserModel from "./user.models.js";
+const AuthModel = require("./auth.models");
+const UserModel = require("./user.models");
 
 const db = {
-	users: UserModel,
+	Users: UserModel,
+	Auth: AuthModel,
 };
 
-export default db;
+module.exports = { db };

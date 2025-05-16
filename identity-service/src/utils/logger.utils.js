@@ -1,4 +1,4 @@
-import winston from "winston";
+const winston = require("winston");
 
 const timestamp = `${new Date().getDate()}_${new Date().getMonth()}_${new Date().getFullYear()}`;
 
@@ -28,4 +28,4 @@ const logger = winston.createLogger({
 	],
 });
 
-export default logger;
+module.exports = logger;
