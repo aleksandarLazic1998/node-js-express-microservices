@@ -65,7 +65,11 @@ const register = async (req, res) => {
 			message: `Successfully created user with email: ${user.email}`,
 		});
 	} catch (error) {
-		logger.error(error);
+		logger.error("Registration error", error);
+		return res.status(500).json({
+			success: false,
+			message: "Internal server error",
+		});
 	}
 };
 
