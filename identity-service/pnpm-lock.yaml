@@ -11,6 +11,9 @@ importers:
       argon2:
         specifier: ^0.43.0
         version: 0.43.0
+      bcrypt:
+        specifier: ^6.0.0
+        version: 6.0.0
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -112,6 +115,10 @@ packages:
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+
+  bcrypt@6.0.0:
+    resolution: {integrity: sha512-cU8v/EGSrnH+HnxV2z0J7/blxH8gq7Xh2JFT6Aroax7UohdmiJJlxApMxtKfuI7z68NvvVcmR78k2LbT6efhRg==}
+    engines: {node: '>= 18'}
 
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
@@ -809,6 +816,11 @@ snapshots:
   async@3.2.6: {}
 
   balanced-match@1.0.2: {}
+
+  bcrypt@6.0.0:
+    dependencies:
+      node-addon-api: 8.3.1
+      node-gyp-build: 4.8.4
 
   binary-extensions@2.3.0: {}
 

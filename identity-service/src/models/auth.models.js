@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const AuthSchema = mongoose.Schema(
 	{
@@ -27,4 +27,4 @@ AuthSchema.index({ expiresAt: 1 }, { expiresAfterSeconds: 0 });
 
 const AuthModel = mongoose.model("Auth", AuthSchema);
 
-export default AuthModel;
+module.exports = AuthModel;

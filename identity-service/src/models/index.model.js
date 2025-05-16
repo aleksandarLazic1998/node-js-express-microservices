@@ -1,9 +1,9 @@
-import AuthModel from "./refresh-token.model.js";
-import UserModel from "./user.models.js";
+const AuthModel = require("./auth.models");
+const UserModel = require("./user.models");
 
 const db = {
-	users: UserModel,
-	auth: AuthModel,
+	Users: UserModel,
+	Auth: AuthModel,
 };
 
-export default db;
+module.exports = { db };

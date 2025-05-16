@@ -1,6 +1,6 @@
-import "dotenv/config";
+require("dotenv/config");
 
-export default {
+module.exports = {
 	PORT: process.env.PORT ?? 3001,
 	MONGO_DB_URI: process.env.MONGO_DB_URI ?? "mongodburi",
 	JWT_SECRET: process.env.JWT_SECRET ?? "jwtsecret",

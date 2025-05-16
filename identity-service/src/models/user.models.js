@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import argon2 from "argon2";
+const mongoose = require("mongoose");
+const argon2 = require("argon2");
 
 const UserSchema = mongoose.Schema(
 	{
@@ -19,7 +19,7 @@ const UserSchema = mongoose.Schema(
 	{ timestamps: true }
 );
 
-userSchema.pre("save", async function (next) {
+UserSchema.pre("save", async function (next) {
 	if (this.isModified("password")) {
 		try {
 			this.password = await argon2.hash(this.password);
@@ -29,7 +29,7 @@ userSchema.pre("save", async function (next) {
 	}
 });
 
-userSchema.methods.comparePassword = async function (candidatePassword) {
+UserSchema.methods.comparePassword = async function (candidatePassword) {
 	try {
 		return await argon2.verify(this.password, candidatePassword);
 	} catch (error) {
@@ -37,8 +37,8 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
 	}
 };
 
-userSchema.index({ username: "text" });
+UserSchema.index({ username: "text" });
 
 const UserModel = mongoose.model("User", UserSchema);
 
-export default UserModel;
+module.exports = UserModel;
