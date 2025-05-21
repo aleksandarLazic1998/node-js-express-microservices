@@ -28,7 +28,9 @@ redisClient.on("error", (error) => {
 	logger.error("Redis connection error", error);
 });
 redisClient.on("connect", () => {
-	logger.info("Redis client connected in API Gateway");
+	logger.info(
+		`Redis client connected in API Gateway: redis://${ENV_VARIABLES.REDIS_HOST}:${ENV_VARIABLES.REDIS_PORT}`
+	);
 });
 
 // DDos protection and rate limiting
