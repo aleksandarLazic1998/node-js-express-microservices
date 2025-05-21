@@ -39,7 +39,9 @@ redisClient.on("error", (error) => {
 	logger.error("Redis connection error", error);
 });
 redisClient.on("connect", () => {
-	logger.info("Redis client connected in identity Service");
+	logger.info(
+		`Redis client connected in Identity Service: redis://${ENV_VARIABLES.REDIS_HOST}:${ENV_VARIABLES.REDIS_PORT}`
+	);
 });
 
 // //DDos protection and rate limiting
@@ -58,7 +60,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use("/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 
 app.use(globalErrorhandler);
 

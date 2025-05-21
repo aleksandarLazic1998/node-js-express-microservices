@@ -45,7 +45,7 @@ app.use(rateLimiterRedis(rateLimiter));
 
 app.use((req, res, next) => {
 	logger.info(`Received ${req.method} request to ${req.url}`);
-	logger.info(`Request body, ${req.body}`);
+	logger.info(`Request body, ${JSON.stringify(req.body)}`);
 	next();
 });
 
@@ -73,8 +73,6 @@ app.use(
 	})
 );
 
-bootstrap();
-
 app.use(errorHandler);
 
 async function bootstrap() {
@@ -85,3 +83,5 @@ async function bootstrap() {
 		);
 	});
 }
+
+bootstrap();
